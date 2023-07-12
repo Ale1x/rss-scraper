@@ -1,6 +1,7 @@
 package it.ale1x.rssscraper;
 
 import it.ale1x.rssscraper.service.RssScraper;
+import it.ale1x.rssscraper.utils.Config;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -12,11 +13,10 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        if(args[0] == null) {
-            throw new IllegalArgumentException("File non trovato!");
-        }
+        Config config = new Config("config.yml");
 
-        File file = new File(args[0]);
+        File file = new File(config.getString("txt-file-with-urls"));
+
         Scanner scanner = new Scanner(file);
         List<String> urls = new ArrayList<>();
 
