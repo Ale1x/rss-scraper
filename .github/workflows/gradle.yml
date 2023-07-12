@@ -1,0 +1,36 @@
+- name: Gradle Build Action
+  # You may pin to the exact commit or the version.
+  # uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25
+  uses: gradle/gradle-build-action@v2.6.0
+  with:
+    # Gradle version to use. If specified, this Gradle version will be downloaded, added to the PATH and used for invoking Gradle.
+    gradle-version: # optional
+    # Path to the Gradle executable. If specified, this executable will be added to the PATH and used for invoking Gradle.
+    gradle-executable: # optional
+    # Path to the root directory of the build. Default is the root of the GitHub workspace.
+    build-root-directory: # optional
+    # When 'true', all caching is disabled. No entries will be written to or read from the cache.
+    cache-disabled: false
+
+    cache-read-only:
+
+    cache-write-only: # optional
+    # Paths within Gradle User Home to cache.
+    gradle-home-cache-includes: 
+
+    # Paths within Gradle User Home to exclude from cache.
+    gradle-home-cache-excludes: # optional
+    # Gradle command line arguments (supports multi-line input)
+    arguments: # optional
+    # When 'false', no Job Summary will be generated for the Job.
+    generate-job-summary: # optional, default is true
+    # Specifies if a GitHub dependency snapshot should be generated for each Gradle build, and if so, how. Valid values are 'disabled' (default), 'generate', 'generate-and-submit' and 'download-and-submit'.
+    dependency-graph: # optional, default is disabled
+    # When 'true', the action will not attempt to restore the Gradle User Home entries from other Jobs.
+    gradle-home-cache-strict-match: # optional
+    # Used to uniquely identify the current job invocation. Defaults to the matrix values for this job; this should not be overridden by users (INTERNAL).
+    workflow-job-context: # optional, default is ${{ toJSON(matrix) }}
+    # When 'true', the action will attempt to remove any stale/unused entries from the Gradle User Home prior to saving to the GitHub Actions cache.
+    gradle-home-cache-cleanup: # optional
+    # The GitHub token used to authenticate when submitting via the Dependency Submission API.
+    github-token: # optional, default is ${{ github.token }}
