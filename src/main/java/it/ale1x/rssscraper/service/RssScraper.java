@@ -13,18 +13,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+
 public class RssScraper {
 
-    private String url;
+    private final String url;
 
     public RssScraper(String url) {
         this.url = url;
     }
 
-    public List<RssFeed> scrape() throws IOException {
+    public List<RssFeed> scrape() {
         List<RssFeed> rssFeeds = new ArrayList<>();
 
-        Document doc = Jsoup.connect(url).get();
+        Document doc;
+        try {
+            doc = Jsoup.connect(url).get();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Elements items = doc.select("item");
 
@@ -40,4 +46,12 @@ public class RssScraper {
 
         return rssFeeds;
     }
+
+    public void printInfo(RssFeed feed) {
+        System.out.println("Titolo: " + feed.getTitle());
+        System.out.println("Descrizione: " + feed.getDescription());
+        System.out.println("Data di pubblicazione: " + feed.getPubDate().toString());
+        System.out.println("Link: " + feed.getLink() + "\n");
+    }
+
 }
