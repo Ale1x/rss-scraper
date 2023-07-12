@@ -1,4 +1,4 @@
-package it.ale1x;
+package it.ale1x.rssscraper;
 
 import it.ale1x.rssscraper.service.RssScraper;
 

@@ -48,6 +48,8 @@ public class RssScraper {
     }
 
     public void printInfo(RssFeed feed) {
+        if(feed == null) return;
+
         System.out.println("Titolo: " + feed.getTitle());
         System.out.println("Descrizione: " + feed.getDescription());
         System.out.println("Data di pubblicazione: " + feed.getPubDate().toString());
