@@ -1,7 +1,6 @@
 package it.ale1x.rssscraper;
 
 import it.ale1x.rssscraper.service.RssScraper;
-import it.ale1x.rssscraper.utils.Config;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,9 +12,7 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        Config config = new Config("config.yml");
-
-        File file = new File(config.getString("txt-file-with-urls"));
+        File file = new File("input.txt");
 
         Scanner scanner = new Scanner(file);
         List<String> urls = new ArrayList<>();
