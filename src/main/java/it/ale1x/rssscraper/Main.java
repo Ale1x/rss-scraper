@@ -12,7 +12,9 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        File file = new File("input.txt");
+        String fileName = args[0];
+
+        File file = new File(fileName);
 
         Scanner scanner = new Scanner(file);
         List<String> urls = new ArrayList<>();
