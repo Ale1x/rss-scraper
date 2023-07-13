@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ScraperTest {
 
@@ -16,7 +17,7 @@ public class ScraperTest {
         List<RssFeed> rssFeedList = rssScraper.scrape();
 
         for(RssFeed feed : rssFeedList) {
-            assertNotEquals(feed.getTitle(), "");
+            assertNotEquals(feed.getElement("title"), Optional.empty());
         }
     }
 
@@ -26,7 +27,7 @@ public class ScraperTest {
         List<RssFeed> rssFeedList = rssScraper.scrape();
 
         for(RssFeed feed : rssFeedList) {
-            assertNotEquals(feed.getDescription(), "");
+            assertNotEquals(feed.getElement("description"), Optional.empty());
         }
     }
 
@@ -36,7 +37,7 @@ public class ScraperTest {
         List<RssFeed> rssFeedList = rssScraper.scrape();
 
         for(RssFeed feed : rssFeedList) {
-            assertNotEquals(feed.getLink(), "");
+            assertNotEquals(feed.getElement("link"), Optional.empty());
         }
     }
 

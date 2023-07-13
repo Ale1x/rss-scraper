@@ -36,9 +36,9 @@ public class RssScraper {
 
         for(Element item : items) {
             RssFeed feed = new RssFeed();
-            feed.setTitle(item.select("title").text());
-            feed.setDescription(item.select("description").text());
-            feed.setLink(item.select("link").text());
+            feed.setElement("Titolo", item.select("title").text());
+            feed.setElement("Descrizione", item.select("description").text());
+            feed.setElement("Link", item.select("link").text());
             feed.setPubDate(OffsetDateTime.parse(item.select("pubDate").text(),
                     DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH)));
             rssFeeds.add(feed);
