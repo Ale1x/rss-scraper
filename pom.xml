@@ -16,6 +16,13 @@
         <project.build.sourcceEncoding>UTF-8</project.build.sourcceEncoding>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/Ale1x/rss-scraper</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
