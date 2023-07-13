@@ -1,6 +1,7 @@
 package it.ale1x.rssscraper.service;
 
 import it.ale1x.rssscraper.model.RssFeed;
+import it.ale1x.rssscraper.util.RssConfig;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,9 +18,11 @@ import java.util.Locale;
 public class RssScraper {
 
     private final String url;
+    private final List<String> elements;
 
     public RssScraper(String url) {
         this.url = url;
+        elements = RssConfig.getElementsFromConfig("config.yml");
     }
 
     public List<RssFeed> scrape() {
@@ -36,12 +39,13 @@ public class RssScraper {
 
         for(Element item : items) {
             RssFeed feed = new RssFeed();
-            feed.setElement("Titolo", item.select("title").text());
-            feed.setElement("Descrizione", item.select("description").text());
-            feed.setElement("Link", item.select("link").text());
-            feed.setPubDate(OffsetDateTime.parse(item.select("pubDate").text(),
-                    DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH)));
-            rssFeeds.add(feed);
+
+            for(String s : elements) {
+                feed.setElement(s, item.select(s).text());
+                feed.setPubDate(OffsetDateTime.parse(item.select("pubDate").text(),
+                        DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH)));
+                rssFeeds.add(feed);
+            }
         }
 
         return rssFeeds;

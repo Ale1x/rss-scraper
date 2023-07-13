@@ -51,5 +51,20 @@ public class ScraperTest {
         }
     }
 
+    @Test
+    public void testThat_AddElementWithKeyAlreadyExist_succesfullyReplaced() {
+        RssScraper rssScraper = new RssScraper("https://www.ansa.it/sito/notizie/sport/calcio/calcio_rss.xml");
+        List<RssFeed> rssFeedList = rssScraper.scrape();
+
+        rssFeedList.get(0).setElement("title", "ciao");
+
+        assertEquals(rssFeedList.get(0).getElement("title").get(), "ciao");
+
+
+        for(RssFeed feed : rssFeedList) {
+            assertNotEquals(feed.getPubDate(), null);
+        }
+    }
+
 
 }

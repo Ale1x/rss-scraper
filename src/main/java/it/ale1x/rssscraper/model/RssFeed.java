@@ -8,7 +8,6 @@ import java.util.Optional;
 public class RssFeed {
 
     private final Map<String, String> elements = new HashMap<>();
-
     private OffsetDateTime pubDate;
 
     public Optional<String> getElement(String key) {
