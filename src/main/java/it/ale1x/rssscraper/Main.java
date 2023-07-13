@@ -11,11 +11,8 @@ import java.util.concurrent.Executors;
 public class Main {
     public static void main(String[] args) {
 
-        // String fileName =
         RssConfig config = new RssConfig("config.yml");
-
         List<String> urls = config.getUrlsFromConfig();
-
 
         List<RssScraper> scrapers = urls.stream()
                 .map(RssScraper::new)
