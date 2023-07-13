@@ -22,7 +22,8 @@ public class RssScraper {
 
     public RssScraper(String url) {
         this.url = url;
-        elements = RssConfig.getElementsFromConfig("config.yml");
+        RssConfig config = new RssConfig("config.yml");
+        elements = config.getElementsFromConfig();
     }
 
     public List<RssFeed> scrape() {

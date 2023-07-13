@@ -10,8 +10,13 @@ import java.util.Map;
 import java.io.IOException;
 public class RssConfig {
 
+    private final String filepath;
 
-    public static List<String> getElementsFromConfig(String filepath) {
+    public RssConfig(String filepath) {
+        this.filepath = filepath;
+    }
+
+    public List<String> getElementsFromConfig() {
         Yaml yaml = new Yaml();
 
         try (InputStream in = Files.newInputStream(Paths.get(filepath))) {
@@ -23,15 +28,17 @@ public class RssConfig {
         }
     }
 
-    public static String getInputFilenameFromConfig(String filepath) {
+    public List<String> getUrlsFromConfig() {
+
         Yaml yaml = new Yaml();
 
         try (InputStream in = Files.newInputStream(Paths.get(filepath))) {
-            Map<String, String> yamlMap = yaml.load(in);
+            Map<String, List<String>> yamlMap = yaml.load(in);
 
-            return yamlMap.get("input-file");
+            return yamlMap.get("urls");
         } catch (IOException e) {
             throw new RuntimeException("Failed to read the config file", e);
         }
+
     }
 }

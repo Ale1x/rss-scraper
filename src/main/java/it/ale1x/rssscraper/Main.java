@@ -4,25 +4,18 @@ import it.ale1x.rssscraper.service.RssScraper;
 import it.ale1x.rssscraper.model.RssFeed;
 import it.ale1x.rssscraper.util.RssConfig;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
-        // String fileName = args[0];
-        File file = new File(RssConfig.getInputFilenameFromConfig("config.yml"));
-        Scanner scanner = new Scanner(file);
+        // String fileName =
+        RssConfig config = new RssConfig("config.yml");
 
-        List<String> urls = new ArrayList<>();
+        List<String> urls = config.getUrlsFromConfig();
 
-        while (scanner.hasNextLine()) {
-            urls.add(scanner.nextLine());
-        }
 
         List<RssScraper> scrapers = urls.stream()
                 .map(RssScraper::new)
@@ -37,6 +30,5 @@ public class Main {
         executor.shutdown();
         while (!executor.isTerminated()) {}
 
-        scanner.close();
     }
 }
