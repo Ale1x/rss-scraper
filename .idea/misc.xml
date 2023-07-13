@@ -13,6 +13,7 @@
     </option>
   </component>
   <component name="ProjectResources">
+    <resource url="http://maven.apache.org/ASSEMBLY/2.2.0" location="$PROJECT_DIR$" />
     <resource url="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" location="$PROJECT_DIR$" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="corretto-19" project-jdk-type="JavaSDK">
