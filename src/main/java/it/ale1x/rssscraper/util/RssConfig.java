@@ -22,4 +22,16 @@ public class RssConfig {
             throw new RuntimeException("Failed to read the config file", e);
         }
     }
+
+    public static String getInputFilenameFromConfig(String filepath) {
+        Yaml yaml = new Yaml();
+
+        try (InputStream in = Files.newInputStream(Paths.get(filepath))) {
+            Map<String, String> yamlMap = yaml.load(in);
+
+            return yamlMap.get("input-file");
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to read the config file", e);
+        }
+    }
 }

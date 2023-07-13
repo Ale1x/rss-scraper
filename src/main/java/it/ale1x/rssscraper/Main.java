@@ -2,6 +2,7 @@ package it.ale1x.rssscraper;
 
 import it.ale1x.rssscraper.service.RssScraper;
 import it.ale1x.rssscraper.model.RssFeed;
+import it.ale1x.rssscraper.util.RssConfig;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         // String fileName = args[0];
-        File file = new File("input.txt");
+        File file = new File(RssConfig.getInputFilenameFromConfig("config.yml"));
         Scanner scanner = new Scanner(file);
 
         List<String> urls = new ArrayList<>();

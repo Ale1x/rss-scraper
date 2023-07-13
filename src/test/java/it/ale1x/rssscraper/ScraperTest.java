@@ -11,10 +11,10 @@ import java.util.Optional;
 
 public class ScraperTest {
 
+    private final RssScraper rssScraper = new RssScraper("https://www.ansa.it/sito/notizie/sport/calcio/calcio_rss.xml");
+    List<RssFeed> rssFeedList = rssScraper.scrape();
     @Test
     public void testScrap_title_notNull() {
-        RssScraper rssScraper = new RssScraper("https://www.ansa.it/sito/notizie/sport/calcio/calcio_rss.xml");
-        List<RssFeed> rssFeedList = rssScraper.scrape();
 
         for(RssFeed feed : rssFeedList) {
             assertNotEquals(feed.getElement("title"), Optional.empty());
@@ -23,8 +23,6 @@ public class ScraperTest {
 
     @Test
     public void testScrap_description_notNull() {
-        RssScraper rssScraper = new RssScraper("https://www.ansa.it/sito/notizie/sport/calcio/calcio_rss.xml");
-        List<RssFeed> rssFeedList = rssScraper.scrape();
 
         for(RssFeed feed : rssFeedList) {
             assertNotEquals(feed.getElement("description"), Optional.empty());
@@ -33,8 +31,6 @@ public class ScraperTest {
 
     @Test
     public void testScrap_link_notNull() {
-        RssScraper rssScraper = new RssScraper("https://www.ansa.it/sito/notizie/sport/calcio/calcio_rss.xml");
-        List<RssFeed> rssFeedList = rssScraper.scrape();
 
         for(RssFeed feed : rssFeedList) {
             assertNotEquals(feed.getElement("link"), Optional.empty());
@@ -43,8 +39,6 @@ public class ScraperTest {
 
     @Test
     public void testScrap_date_notNull() {
-        RssScraper rssScraper = new RssScraper("https://www.ansa.it/sito/notizie/sport/calcio/calcio_rss.xml");
-        List<RssFeed> rssFeedList = rssScraper.scrape();
 
         for(RssFeed feed : rssFeedList) {
             assertNotEquals(feed.getPubDate(), null);
@@ -53,8 +47,6 @@ public class ScraperTest {
 
     @Test
     public void testThat_AddElementWithKeyAlreadyExist_succesfullyReplaced() {
-        RssScraper rssScraper = new RssScraper("https://www.ansa.it/sito/notizie/sport/calcio/calcio_rss.xml");
-        List<RssFeed> rssFeedList = rssScraper.scrape();
 
         rssFeedList.get(0).setElement("title", "ciao");
 
