@@ -1,36 +1,21 @@
 package it.ale1x.rssscraper.model;
 
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class RssFeed {
 
-    private String title;
-    private String link;
-    private String description;
+    private final Map<String, String> elements = new HashMap<>();
     private OffsetDateTime pubDate;
 
-    public String getTitle() {
-        return title;
+    public Optional<String> getElement(String key) {
+        return Optional.ofNullable(elements.get(key));
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setElement(String key, String value) {
+        elements.put(key, value);
     }
 
     public OffsetDateTime getPubDate() {
@@ -42,14 +27,9 @@ public class RssFeed {
     }
 
     public void printInfo() {
-        if(title == null || title.isEmpty()) return;
-        if(link == null || link.isEmpty()) return;
-        if(description == null || description.isEmpty()) return;
-        if(pubDate == null) return;
-
-        System.out.println("Titolo: " + title);
-        System.out.println("Descrizione: " + description);
-        System.out.println("Data di pubblicazione: " + pubDate.toString());
-        System.out.println("Link: " + link + "\n");
+        for (Map.Entry<String, String> entry : elements.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+        System.out.println();
     }
 }
