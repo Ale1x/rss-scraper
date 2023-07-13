@@ -7,7 +7,6 @@ public class RssFeed {
     private String title;
     private String link;
     private String description;
-    private String language;
     private OffsetDateTime pubDate;
 
     public String getTitle() {
@@ -40,5 +39,17 @@ public class RssFeed {
 
     public void setPubDate(OffsetDateTime pubDate) {
         this.pubDate = pubDate;
+    }
+
+    public void printInfo() {
+        if(title == null || title.isEmpty()) return;
+        if(link == null || link.isEmpty()) return;
+        if(description == null || description.isEmpty()) return;
+        if(pubDate == null) return;
+
+        System.out.println("Titolo: " + title);
+        System.out.println("Descrizione: " + description);
+        System.out.println("Data di pubblicazione: " + pubDate.toString());
+        System.out.println("Link: " + link + "\n");
     }
 }
