@@ -1,0 +1,28 @@
+name: Github Actions Maven Build
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Step 1 - Checkout main branch from Github
+      uses: actions/checkout@v2
+
+    - name: Step 2 - Setup JDK 19
+      uses: actions/setup-java@v2 # use v2 for setup-java
+      with:
+        java-version: 19
+        distribution: 'adopt'  # I suggest using 'adopt' for distribution, but you can choose any distribution supported by setup-java action
+
+    - name: Step 3 - Have Github Actions build maven project
+      run: mvn clean compile assembly:single
+
+    - name: Step 4 - List the current directory
+      run: ls -al
+
+    - name: Step 5 - What is in the target folder?
+      run: |
+        cd target
+        ls -a
