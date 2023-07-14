@@ -29,12 +29,7 @@ public class RssScraper {
     public List<RssFeed> scrape() {
         List<RssFeed> rssFeeds = new ArrayList<>();
 
-        Document doc;
-        try {
-            doc = Jsoup.connect(url).get();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Document doc = connect();
 
         Elements items = doc.select("item");
 
@@ -52,5 +47,11 @@ public class RssScraper {
         return rssFeeds;
     }
 
-
+    public Document connect() {
+        try {
+            return Jsoup.connect(url).get();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
