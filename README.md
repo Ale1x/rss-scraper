@@ -20,10 +20,6 @@ To run the RssScraper, pass in the name of the file you want to scrape as an arg
 
 Please make sure to customize your config.yml file to suit your scraping needs.
 
-## Code Snippets
-
-Below are some snippets from classes that play a significant role in the functioning of the application.
-
 ## RssFeed
 
 Stores multiple elements of an RSS feed and the publication date.
